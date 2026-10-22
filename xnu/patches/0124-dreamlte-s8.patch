@@ -81,7 +81,7 @@ index 3ba2fd4..dcbd143 100644
  		return;
  	}
 diff --git bsd/dev/a5xelte_touch.c bsd/dev/a5xelte_touch.c
-index 7ba309b..ba647a8 100644
+index 7ba309b..5317426 100644
 --- a/bsd/dev/a5xelte_touch.c
 +++ b/bsd/dev/a5xelte_touch.c
 @@ -12,6 +12,7 @@
@@ -92,7 +92,7 @@ index 7ba309b..ba647a8 100644
  
  extern vm_offset_t ml_io_map(vm_offset_t, vm_size_t);
  extern void thread_terminate_self(void);
-@@ -615,10 +616,317 @@ a5touch_start_early(vm_offset_t nfc, vm_offset_t alive)
+@@ -615,10 +616,327 @@ a5touch_start_early(vm_offset_t nfc, vm_offset_t alive)
  	}
  }
  
