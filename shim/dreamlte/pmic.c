@@ -3,7 +3,7 @@
  *
  * touch_probe v25 found the touch controller unpowered under our boot: SDA
  * held low (HSI2C master state LOSE) and the gpa1-0 interrupt line at 0.
- * Its rails are S2MPS17 LDO34 "tsp_io" 1.85 V and LDO35 "tsp_avdd" 3.0 V;
+ * Its rails are S2MPS17 LDO34 "tsp_io" 1.85 V and LDO35 "tsp_avdd" 3.30 V;
  * S-Boot leaves them off and Samsung's Linux turns them on. The SPEEDY
  * transfer and the LDO values follow uniLoader (board-dreamlte.c,
  * drivers/samsung/exynos-speedy.c); the RTC layout follows Samsung's
@@ -33,7 +33,7 @@
 #define L35CTRL			0x60
 #define LDO_EN			(3u << 6)
 #define L34_1V85		(LDO_EN | (1850000 - 700000) / 25000)
-#define L35_3V0			(LDO_EN | (3000000 - 1800000) / 25000)
+#define L35_3V3			(LDO_EN | (3300000 - 1800000) / 25000)
 #define RTC_UPDATE		0x02
 #define RTC_RUDR		0x01
 #define RTC_SEC			0x04
@@ -116,7 +116,7 @@ uint64_t pmic_init(void (*kv_fn)(const char *, uint64_t), void (*out_fn)(const c
 	show("L35", SLAVE_PMIC, L35CTRL);
 	out("\n");
 	int r1 = speedy(SLAVE_PMIC, L34CTRL, 1, L34_1V85);
-	int r2 = speedy(SLAVE_PMIC, L35CTRL, 1, L35_3V0);
+	int r2 = speedy(SLAVE_PMIC, L35CTRL, 1, L35_3V3);
 	kv("write rc", (uint64_t)(uint32_t)(r1 | r2));
 	show("L34", SLAVE_PMIC, L34CTRL);
 	show("L35", SLAVE_PMIC, L35CTRL);
